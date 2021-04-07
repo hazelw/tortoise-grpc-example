@@ -15,7 +15,8 @@ class SnakesServiceServicer(snakes_pb2_grpc.SnakesServiceServicer):
             snake = await Snake.get(id=request.id)
             return snake
 
-        snake = await _get_snake(request.id)
+        event_loop = asyncio.get_event_loop()
+        snake = event_loop.run_until_complete(await _get_snake(request.id))
 
         if not snake:
             return snakes_pb2.GetSnakeResponse(error_message="no snake")
