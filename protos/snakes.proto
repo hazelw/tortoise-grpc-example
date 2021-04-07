@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package snakes;
+
+service SnakesService {
+  rpc GetSnake(GetSnakeRequest) returns (GetSnakeResponse) {}
+  rpc CreateSnake(CreateSnakeRequest) returns (CreateSnakeResponse) {}
+}
+
+message GetSnakeRequest {
+  int32 id = 1;
+}
+
+message GetSnakeResponse {
+  string name = 1;
+  string pattern = 2;
+  bool success = 3;
+  string error_message = 4;
+}
+
+message CreateSnakeRequest {
+  string name = 1;
+  string pattern = 2;
+}
+
+message CreateSnakeResponse {
+  bool success = 1;
+  string error_message = 2;
+}
